@@ -17,10 +17,17 @@ def recommend(user_id=None, business_id=None, city=None, n=10):
     """
 
     # Maak een lijstje indien city gegeven
+
+    if city:
+        top = USERS
+        for City in top:
+            print(City)
+
+
     list_of_dicts = []
-    #if city:
-    #    for i in range(n):
-    #        list_of_dicts.append("iets")
+        #for i in range(n):
+
+         #   list_of_dicts.append("iets")
 
     #    return list_of_dicts
 
