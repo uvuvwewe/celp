@@ -15,6 +15,16 @@ def recommend(user_id=None, business_id=None, city=None, n=10):
             adress:str
         }
     """
+
+    # Maak een lijstje indien city gegeven
+    list_of_dicts = []
+    #if city:
+    #    for i in range(n):
+    #        list_of_dicts.append("iets")
+
+    #    return list_of_dicts
+
+    # Genereer random stad indien geen city gegeven
     if not city:
         city = random.choice(CITIES)
     return random.sample(BUSINESSES[city], n)
