@@ -28,10 +28,6 @@ def get_data(bid):
 
 
 def recommend(user_id=None, business_id=None, city=None, n=10):
-
-    business_id = '-MsRvdPnuw6QuLn5Vxjruw'
-    city = 'Westlake'
-
     """
     Returns n recommendations as a list of dicts.
     Optionally takes in a user_id, business_id and/or city.
@@ -47,16 +43,12 @@ def recommend(user_id=None, business_id=None, city=None, n=10):
     # Genereer random stad indien geen city gegeven
     if not city:
         city = random.choice(CITIES)
-        #return random.sample(BUSINESSES[city], n)
+    #return random.sample(BUSINESSES[city], n)
 
-    # Genereer random business indien geen business gegeven
-    if not business_id:
-        return random.sample(BUSINESSES[city], n)
+    business_id = '-MsRvdPnuw6QuLn5Vxjruw'
 
     # Data inladen
-    path = "data/"
-    path += city.lower() + "/"
-    data_folder = Path(path)
+    data_folder = Path("data/westlake/")
     file_to_open = data_folder / "business.json"
     data = []
     for line in open(file_to_open, 'r'):
@@ -67,6 +59,7 @@ def recommend(user_id=None, business_id=None, city=None, n=10):
     dict_categories = {}
     for i in data:
         dict_categories[i['business_id']] = i['categories'].split(', ')
+
 
 
     # Maak waarden in lijst per twee WERKT!
@@ -87,17 +80,13 @@ def recommend(user_id=None, business_id=None, city=None, n=10):
     similarity_matrix = create_similarity_matrix_categories(utility_matrix)
 
 
-    # Kijk of bedrijf similar is KIJK EVEN!
+    # Kijk of bedrijf similar is
     similarities = {}
     for column in similarity_matrix:
         for row in similarity_matrix:
             if 0 < similarity_matrix.loc[column][row] < 1:
                 similarities[(column, row)] = {'value' : similarity_matrix.loc[column][row]}
 
-
-    print(koekoek)
-    print(similarities)
-    print('dus t werkt (nu nog niet dus)')
 
     # Maak paren met gelijkenis
     possibilities = {}

@@ -55,7 +55,7 @@ def recommend(user_id=None, business_id=None, city=None, n=10):
 
     # Data inladen
     path = "data/"
-    path += city.lower() + "/"
+    path += city + "/"
     data_folder = Path(path)
     file_to_open = data_folder / "business.json"
     data = []
@@ -87,17 +87,14 @@ def recommend(user_id=None, business_id=None, city=None, n=10):
     similarity_matrix = create_similarity_matrix_categories(utility_matrix)
 
 
-    # Kijk of bedrijf similar is KIJK EVEN!
+    # Kijk of bedrijf similar is
     similarities = {}
     for column in similarity_matrix:
         for row in similarity_matrix:
             if 0 < similarity_matrix.loc[column][row] < 1:
                 similarities[(column, row)] = {'value' : similarity_matrix.loc[column][row]}
-
-
-    print(koekoek)
     print(similarities)
-    print('dus t werkt (nu nog niet dus)')
+    print('dus t werkt')
 
     # Maak paren met gelijkenis
     possibilities = {}
