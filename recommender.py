@@ -95,9 +95,6 @@ def recommend(user_id=None, business_id=None, city=None, n=10):
                 similarities[(column, row)] = {'value' : similarity_matrix.loc[column][row]}
 
 
-    print(koekoek)
-    print(similarities)
-    print('dus t werkt (nu nog niet dus)')
 
     # Maak paren met gelijkenis
     possibilities = {}
